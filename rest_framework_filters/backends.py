@@ -33,7 +33,9 @@ class RestFrameworkFilterBackend(backends.DjangoFilterBackend):
 
         def get_filter_class(view, queryset=None):
             filter_class = original(view, queryset)
-            filter_class.override_filters = noop
+
+            if filter_class:
+                filter_class.override_filters = noop
 
             return filter_class
 
